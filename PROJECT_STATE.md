@@ -227,6 +227,7 @@ Güvenlik nedeniyle açığa çıkan Groq ve Supabase legacy server anahtarları
 - İlk sürüm: 97 dosya staged secret taramasından geçirildi; `.env.local`, `.claude/` ve `.agents/` ignore edildi. `8bd377b` (`Initial open-source release`) commit'i `origin/main` branch'ine gönderildi.
 - Repository yüzeyi: Issues açık, Wiki kapalı; Next.js, TypeScript, GitHub API, Supabase, Groq, GPT-OSS, developer tools, build-in-public, open source, proof of progress ve OG image topic'leri eklendi.
 - Güvenlik: GitHub secret scanning, push protection, Dependabot alerts/security updates ve private vulnerability reporting aktif. Yalnız squash merge açık; merge sonrası branch temizliği ve branch update desteği etkin.
+- Branch protection: `main` için strict `Verify` kontrolü, linear history, stale review temizliği ve conversation resolution zorunlu; force-push, branch silme ve admin bypass kapalı. Tek maintainer akışını kilitlememek için haricî onay sayısı `0`.
 - CI: İlk GitHub Actions `Verify` işi başarıyla tamamlandı. Dependabot'un önerdiği ve CI'dan geçen `actions/checkout@v7` ile `actions/setup-node@v7` ana workflow'a alındı.
 - Dependabot politikası: Gürültülü/kırıcı otomatik major sürüm PR'larını engellemek için npm major version updates ignore edildi; aylık non-major npm ve GitHub Actions güncellemeleri kendi gruplarında birleştirildi. Security updates ayrıca aktif kalır.
 - Faz/kapsam etkisi: Ürün veya hosting kapsamı değişmedi; phase `DEPLOY_READY` olarak korundu. Bu çalışma yalnız kaynak dağıtımı, topluluk yüzeyi ve supply-chain güvenliğini tamamladı.
