@@ -44,11 +44,12 @@ Public repo URL → 7/30 gün → Analiz → Public trace page → Share card
 - [x] Hata durumları yazıldı
 - [x] Production deploy paketi hazır
 - [x] Açık kaynak yayın paketi hazır
+- [x] Public GitHub repository yayınlandı
 - [ ] Production deploy tamamlandı
 
 ## Active task
 
-Güvenlik nedeniyle açığa çıkan anahtarları yenilemek ve doğrulanmış açık kaynak paketini temiz bir Git geçmişiyle public GitHub repository'sine göndermek.
+Güvenlik nedeniyle açığa çıkan Groq ve Supabase legacy server anahtarlarını yenileyip yeni Supabase publishable/secret key bağlantısını doğrulamak.
 
 ## Decisions
 
@@ -89,7 +90,7 @@ Güvenlik nedeniyle açığa çıkan anahtarları yenilemek ve doğrulanmış a�
 
 - Supabase bağlantısı ve gerçek Groq GPT-OSS smoke testi başarılı. GitHub token opsiyonel olarak eksik. Sohbette/diagnostic çıktıda görünen Groq ve Supabase service-role anahtarları public push öncesi yenilenmeli.
 - Resmi production deploy kullanıcı kararıyla kapsamdan çıkarıldı; Vercel rehberi yalnız fork sahipleri için opsiyonel tutuluyor.
-- GitHub CLI (`gh`) bu makinede kurulu değil; public repository oluşturma ve push öncesi kurulup GitHub hesabına bağlanmalı.
+- Public kaynak repository: `https://github.com/tuneay/Shiptrace`. Resmî hosted instance bulunmuyor.
 - In-memory rate limit serverless instance'lar arasında global kesinlik sağlamaz.
 
 ## Next task
@@ -97,7 +98,7 @@ Güvenlik nedeniyle açığa çıkan anahtarları yenilemek ve doğrulanmış a�
 1. ~~Tasarım sistemi ve reduced-motion kurallarına bağlı bir motion polish geçişi yap.~~ Tamamlandı (Session 11).
 2. Groq ve Supabase server secret'larını yenile; `.env.local` dosyasının GitHub'a girmediğini doğrula.
 3. ~~Lisans, contribution/security belgeleri ve açık kaynak README düzenini tamamla.~~ Tamamlandı (Session 12).
-4. Temiz Git geçmişiyle public GitHub repository'sine push et.
+4. ~~Temiz Git geçmişiyle public GitHub repository'sine push et.~~ Tamamlandı (Session 13).
 
 ## Session log
 
@@ -219,3 +220,13 @@ Güvenlik nedeniyle açığa çıkan anahtarları yenilemek ve doğrulanmış a�
 - Değişen karar: Proje resmî olarak host edilmeyecek; bu çalışma yalnız public kaynak repository kalitesini güçlendiriyor. Yeni ürün özelliği eklenmedi, ana MVP akışı ve gece hedefi tehlikeye girmiyor.
 - Etkilenen dosyalar: `LICENSE`, `README.md`, `package.json`, `package-lock.json`, `.env.example`, `.gitignore`, `.editorconfig`, `.gitattributes`, `CONTRIBUTING.md`, `SECURITY.md`, `SUPPORT.md`, `CODE_OF_CONDUCT.md`, `TRADEMARKS.md`, `.github/**`, `docs/assets/shiptrace-preview.svg`, `docs/05_TECH_ARCHITECTURE.md`, `lib/persistence/store.ts`, `PROJECT_STATE.md`.
 - Yayın engelleri: Sohbette görünmüş Groq ve Supabase service-role anahtarları yenilenmeden Git başlatılmayacak. GitHub CLI kurulduktan ve hesap bağlantısı tamamlandıktan sonra temiz ilk commit ile public repository oluşturulacak.
+
+### Session 13 — Public GitHub Release
+
+- Repository: `https://github.com/tuneay/Shiptrace` public olarak oluşturuldu; varsayılan branch `main`, açıklama kullanıcı tarafından onaylanan “Shiptrace turns GitHub activity into clear, verifiable progress trails for projects.” metnidir.
+- İlk sürüm: 97 dosya staged secret taramasından geçirildi; `.env.local`, `.claude/` ve `.agents/` ignore edildi. `8bd377b` (`Initial open-source release`) commit'i `origin/main` branch'ine gönderildi.
+- Repository yüzeyi: Issues açık, Wiki kapalı; Next.js, TypeScript, GitHub API, Supabase, Groq, GPT-OSS, developer tools, build-in-public, open source, proof of progress ve OG image topic'leri eklendi.
+- Güvenlik: GitHub secret scanning, push protection, Dependabot alerts/security updates ve private vulnerability reporting aktif. Yalnız squash merge açık; merge sonrası branch temizliği ve branch update desteği etkin.
+- CI: İlk GitHub Actions `Verify` işi başarıyla tamamlandı. Dependabot'un önerdiği ve CI'dan geçen `actions/checkout@v7` ile `actions/setup-node@v7` ana workflow'a alındı.
+- Dependabot politikası: Gürültülü/kırıcı otomatik major sürüm PR'larını engellemek için npm major version updates ignore edildi; aylık non-major npm ve GitHub Actions güncellemeleri kendi gruplarında birleştirildi. Security updates ayrıca aktif kalır.
+- Faz/kapsam etkisi: Ürün veya hosting kapsamı değişmedi; phase `DEPLOY_READY` olarak korundu. Bu çalışma yalnız kaynak dağıtımı, topluluk yüzeyi ve supply-chain güvenliğini tamamladı.
