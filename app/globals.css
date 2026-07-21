@@ -1,0 +1,271 @@
+@import "tailwindcss";
+@import "../components/landing/landing.css";
+@import "../components/landing/analysis-progress.css";
+@import "../components/landing/receipt.css";
+@import "../components/landing/landing-sections.css";
+
+:root {
+  --canvas: #f4f0e7;
+  --paper: #fffcf6;
+  --ink: #11110f;
+  --muted: #716d65;
+  --line: #d8d1c4;
+  --soft-line: #e8e2d8;
+  --signal: #d7ff45;
+  --signal-dark: #9abf00;
+  --danger: #b9382f;
+  --success: #247a4a;
+  --shadow-paper: 0 1px 1px rgb(17 17 15 / 4%), 0 12px 40px rgb(17 17 15 / 6%);
+  --shadow-lift: 0 2px 4px rgb(17 17 15 / 6%), 0 22px 58px rgb(17 17 15 / 11%);
+
+  /* Motion language — shared across landing, progress and trace.
+     ease-out: confident, self-assured entrances (no overshoot).
+     settle:  heaven-motion — a controlled deceleration that lands in place.
+     micro:   fast, precise reaction for hover/focus. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-micro: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-micro: 180ms;
+  --dur-enter: 480ms;
+  --dur-reveal: 620ms;
+  --dur-exit: 200ms;
+  --stagger: 70ms;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-soft-line: var(--soft-line);
+  --color-signal: var(--signal);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--canvas);
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-weight: 440;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shell {
+  width: min(100% - 64px, 1180px);
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-ring:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--signal-dark);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.eyebrow > span {
+  width: 24px;
+  height: 3px;
+  background: var(--signal);
+}
+
+.wordmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 14px;
+  font-weight: 720;
+  letter-spacing: 0.13em;
+}
+
+.wordmark-dot {
+  width: 6px;
+  height: 6px;
+  margin: 0 0 10px 3px;
+  background: var(--signal);
+  border: 1px solid var(--ink);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  transition:
+    color var(--dur-micro) var(--ease-micro),
+    background var(--dur-micro) var(--ease-micro),
+    border-color var(--dur-micro) var(--ease-micro),
+    transform var(--dur-micro) var(--ease-micro);
+}
+
+/* The trailing glyph leans toward its direction — a small, intentional cue. */
+.button > span:last-child {
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.button:hover:not(:disabled) {
+  color: var(--signal);
+  transform: translateY(-1px);
+}
+
+.button:hover:not(:disabled) > span:last-child {
+  transform: translate(2px, -1px);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+  transition-duration: 90ms;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  border-color: var(--line);
+  background: var(--line);
+  color: var(--muted);
+}
+
+.button-small {
+  min-height: 40px;
+  gap: 16px;
+  border-radius: 10px;
+  padding-inline: 16px;
+  font-size: 11px;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: min(100% - 36px, 1180px);
+  }
+
+  html {
+    scroll-padding-top: 20px;
+  }
+}
+
+/* ── Shared motion primitives ────────────────────────────────────────────
+   st-rise:  the base entrance — a small, weighted rise into place.
+   st-settle: a touch more distance for elements that should feel like they
+              land, used for focal surfaces (the receipt).
+   All entrance/reveal motion is gated behind (prefers-reduced-motion:
+   no-preference) so the page renders complete and static otherwise. */
+@keyframes st-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes st-settle {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scroll reveal. The hidden state only exists once JS has confirmed it can
+   drive the reveal (.js-reveal on <html>) AND the user accepts motion — so
+   with JS off, or reduced motion on, content is fully visible from paint. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js-reveal [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

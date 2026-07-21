@@ -1,0 +1,133 @@
+.hero-proof {
+  position: relative;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #e9e3d7;
+}
+
+.proof-index {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.proof-caption {
+  margin: 17px 0 0;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.receipt-card {
+  position: relative;
+  margin: 12px auto 0;
+  padding: 31px 28px 25px;
+  border: 1px solid #cec6b8;
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow-paper);
+  font-family: var(--font-geist-mono), monospace;
+  transition:
+    transform 260ms var(--ease-out),
+    box-shadow 260ms var(--ease-out),
+    border-color 260ms var(--ease-out);
+}
+
+/* Hover on the whole preview lifts the slip a few pixels and lets the paper
+   settle onto a deeper shadow. Transform-only (no layout), tiny scale to keep
+   the mono text crisp, and gated to real pointers so touch never sticks. */
+@media (hover: hover) {
+  .hero-proof:hover .receipt-card {
+    transform: translateY(-4px) scale(1.006);
+    border-color: #b7ad9c;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .receipt-bars {
+    transition: opacity 260ms var(--ease-out);
+  }
+
+  .hero-proof:hover .receipt-bars {
+    opacity: 0.72;
+  }
+}
+
+.receipt-card::before,
+.receipt-card::after {
+  position: absolute;
+  left: 14px;
+  width: calc(100% - 28px);
+  height: 1px;
+  content: "";
+  background: repeating-linear-gradient(90deg, var(--line) 0 4px, transparent 4px 8px);
+}
+
+.receipt-card::before { top: 11px; }
+.receipt-card::after { bottom: 11px; }
+
+.receipt-header,
+.receipt-footer,
+.receipt-status,
+.receipt-data div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.receipt-header,
+.receipt-footer {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+}
+
+.receipt-rule {
+  height: 1px;
+  margin: 18px 0;
+  background: var(--line);
+}
+
+.receipt-data {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  font-size: 11px;
+}
+
+.receipt-data dt { color: var(--muted); }
+.receipt-data dd { margin: 0; font-weight: 650; }
+.receipt-status { font-size: 11px; }
+.receipt-status span { color: var(--muted); }
+.receipt-status strong { padding: 5px 8px; background: var(--signal); font-size: 10px; }
+
+.receipt-items {
+  display: grid;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 10px;
+  font-weight: 620;
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+}
+
+.receipt-items li { display: flex; gap: 12px; }
+.receipt-items li span { color: var(--muted); }
+.receipt-footer { margin-top: 25px; }
+
+.receipt-bars {
+  width: 82px;
+  height: 18px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 9px);
+}

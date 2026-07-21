@@ -1,0 +1,125 @@
+.analysis-progress {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+/* The panel is the handoff from the form to the pipeline — it settles in once,
+   as a continuation of the hero rather than a new screen. */
+@media (prefers-reduced-motion: no-preference) {
+  .analysis-progress {
+    animation: st-rise 420ms var(--ease-out) both;
+  }
+}
+
+.analysis-progress header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--soft-line);
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+.analysis-progress ol {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+  color: #aaa399;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+}
+
+/* Connector rail behind the dots: a static track plus an ink fill scaled to
+   the current step, so progress reads as a line advancing, not a jump. The
+   pseudos are absolutely positioned so they don't become grid items. */
+.analysis-progress ol::before,
+.analysis-progress ol::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  z-index: 0;
+}
+
+.analysis-progress ol::before {
+  background: var(--soft-line);
+}
+
+.analysis-progress ol::after {
+  background: var(--ink);
+  transform: scaleY(var(--rail-fill, 0));
+  transform-origin: top;
+  transition: transform 520ms var(--ease-settle);
+}
+
+.analysis-progress li {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  transition: color 340ms var(--ease-settle);
+}
+
+/* A calm "current line" wash — neutral, so the signal dot stays the only accent. */
+.progress-active::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -4px -8px;
+  border-radius: 6px;
+  background: rgb(17 17 15 / 4%);
+}
+
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--paper);
+  transition:
+    background 340ms var(--ease-settle),
+    border-color 340ms var(--ease-settle),
+    transform var(--dur-micro) var(--ease-out);
+}
+
+.progress-complete { color: var(--ink); }
+.progress-complete .progress-dot { border-color: var(--ink); background: var(--ink); }
+.progress-active { color: var(--ink); }
+.progress-active .progress-dot { border-color: var(--signal-dark); background: var(--signal); }
+
+/* Pulse means "still working", not "look here": low contrast, slow, and fully
+   off under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .progress-active .progress-dot { animation: quiet-pulse 1.6s var(--ease-micro) infinite; }
+}
+
+.analysis-progress .progress-summary {
+  margin: 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--soft-line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.progress-summary strong {
+  color: var(--ink);
+  font-family: var(--font-geist-mono), monospace;
+}
+
+@keyframes quiet-pulse {
+  50% { opacity: 0.55; }
+}

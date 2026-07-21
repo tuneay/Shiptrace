@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Shiptrace product preview</title>
+  <desc id="desc">An editorial proof-of-progress poster with a product headline, progress highlights, and commit metrics.</desc>
+  <rect width="1200" height="630" fill="#F4F0E7"/>
+  <rect x="42" y="42" width="1116" height="546" rx="24" fill="#FFFCF6" stroke="#D8D1C4" stroke-width="2"/>
+
+  <g fill="#11110F">
+    <text x="82" y="101" font-family="Geist Mono, ui-monospace, monospace" font-size="20" font-weight="700" letter-spacing="2">SHIPTRACE</text>
+    <text x="1118" y="101" text-anchor="end" font-family="Geist Mono, ui-monospace, monospace" font-size="13" font-weight="600" letter-spacing="1.5">PROOF OF PROGRESS</text>
+  </g>
+
+  <rect x="82" y="136" width="116" height="30" rx="15" fill="#D7FF45"/>
+  <text x="140" y="156" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#11110F">BUILDING</text>
+
+  <text x="82" y="231" font-family="Geist, Arial, sans-serif" font-size="52" font-weight="650" fill="#11110F">
+    <tspan x="82" dy="0">Your commits deserve</tspan>
+    <tspan x="82" dy="54">a better story.</tspan>
+  </text>
+
+  <text x="84" y="347" font-family="Geist, Arial, sans-serif" font-size="18" fill="#716D65">
+    <tspan x="84" dy="0">Recent GitHub activity becomes a clear product narrative,</tspan>
+    <tspan x="84" dy="30">a verifiable trace, and a card ready to share.</tspan>
+  </text>
+
+  <line x1="82" y1="426" x2="1118" y2="426" stroke="#D8D1C4" stroke-width="2"/>
+
+  <g font-family="Geist Mono, ui-monospace, monospace">
+    <text x="84" y="467" font-size="11" font-weight="700" letter-spacing="1.4" fill="#716D65">COMMITS</text>
+    <text x="84" y="514" font-size="38" font-weight="700" fill="#11110F">24</text>
+
+    <text x="269" y="467" font-size="11" font-weight="700" letter-spacing="1.4" fill="#716D65">ACTIVE DAYS</text>
+    <text x="269" y="514" font-size="38" font-weight="700" fill="#11110F">06</text>
+
+    <text x="478" y="467" font-size="11" font-weight="700" letter-spacing="1.4" fill="#716D65">CONTRIBUTORS</text>
+    <text x="478" y="514" font-size="38" font-weight="700" fill="#11110F">02</text>
+  </g>
+
+  <g transform="translate(745 148)">
+    <rect width="373" height="226" rx="12" fill="#F4F0E7" stroke="#D8D1C4" stroke-width="2"/>
+    <text x="26" y="39" font-family="Geist Mono, ui-monospace, monospace" font-size="11" font-weight="700" letter-spacing="1.2" fill="#716D65">HIGHLIGHTS / LAST 7 DAYS</text>
+    <line x1="26" y1="58" x2="347" y2="58" stroke="#D8D1C4"/>
+    <circle cx="31" cy="91" r="5" fill="#D7FF45" stroke="#11110F"/>
+    <text x="50" y="97" font-family="Geist, Arial, sans-serif" font-size="16" font-weight="600" fill="#11110F">Core workflow completed</text>
+    <circle cx="31" cy="137" r="5" fill="#D7FF45" stroke="#11110F"/>
+    <text x="50" y="143" font-family="Geist, Arial, sans-serif" font-size="16" font-weight="600" fill="#11110F">Share card introduced</text>
+    <circle cx="31" cy="183" r="5" fill="#D7FF45" stroke="#11110F"/>
+    <text x="50" y="189" font-family="Geist, Arial, sans-serif" font-size="16" font-weight="600" fill="#11110F">Mobile reliability refined</text>
+  </g>
+
+  <text x="1118" y="546" text-anchor="end" font-family="Geist Mono, ui-monospace, monospace" font-size="12" font-weight="600" letter-spacing="1.2" fill="#716D65">PUBLIC METADATA ONLY · NO SOURCE CODE DOWNLOADED</text>
+</svg>

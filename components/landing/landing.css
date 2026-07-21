@@ -1,0 +1,317 @@
+.nav-link {
+  border-bottom: 1px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition:
+    border-color var(--dur-micro) var(--ease-micro),
+    color var(--dur-micro) var(--ease-micro);
+}
+
+.nav-link:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* The wordmark's signal dot answers to hover with a small, precise shift. */
+.wordmark-dot {
+  transition:
+    background var(--dur-micro) var(--ease-micro),
+    transform var(--dur-micro) var(--ease-micro);
+}
+
+.wordmark:hover .wordmark-dot {
+  transform: translateY(-1px);
+}
+
+.hero-grid {
+  display: grid;
+  min-height: 720px;
+  grid-template-columns: minmax(0, 6.5fr) minmax(390px, 5.5fr);
+  align-items: center;
+  gap: clamp(48px, 8vw, 112px);
+  padding-block: 84px 96px;
+}
+
+.hero-copy h1 {
+  max-width: 670px;
+  margin: 27px 0 28px;
+  font-size: clamp(54px, 5.3vw, 76px);
+  font-weight: 620;
+  letter-spacing: -0.062em;
+  line-height: 0.96;
+}
+
+.hero-description {
+  max-width: 610px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  letter-spacing: -0.012em;
+  line-height: 1.55;
+}
+
+.trace-form {
+  max-width: 650px;
+  margin-top: 38px;
+}
+
+.repo-field {
+  display: flex;
+  height: 62px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgb(17 17 15 / 2%);
+  transition:
+    border-color var(--dur-micro) var(--ease-micro),
+    box-shadow var(--dur-micro) var(--ease-micro);
+}
+
+.repo-field:focus-within {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+/* The GH prefix confirms focus without shouting — mono ink, a hint of signal. */
+.repo-mark {
+  transition:
+    color var(--dur-micro) var(--ease-micro),
+    border-color var(--dur-micro) var(--ease-micro);
+}
+
+.repo-field:focus-within .repo-mark {
+  border-right-color: var(--signal-dark);
+  color: var(--ink);
+}
+
+.repo-field-error {
+  border-color: var(--danger);
+}
+
+.repo-field-error:focus-within {
+  box-shadow: 0 0 0 1px var(--danger);
+}
+
+.repo-field-error .repo-mark {
+  color: var(--danger);
+}
+
+/* The field's own ink focus-within frame is the focus indicator (design spec:
+   "kalın siyah sınır"). Suppress the default outline on the inner input so it
+   doesn't render a second, offset ring inside the frame. Keyboard focus stays
+   clearly visible via the frame + prefix accent. */
+.repo-field input:focus-visible {
+  outline: none;
+}
+
+.repo-mark {
+  display: grid;
+  width: 44px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  margin-left: 11px;
+  border-right: 1px solid var(--soft-line);
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.repo-field input {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 0 17px;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.repo-field input::placeholder {
+  color: #969087;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: auto minmax(230px, 1fr);
+  gap: 10px;
+  margin-top: 11px;
+}
+
+.period-selector {
+  position: relative;
+  display: grid;
+  min-width: 206px;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+/* Sliding signal thumb: the selection glides between the two periods instead of
+   blinking on. It sits behind the labels (which stay transparent), and its
+   position is driven by --thumb-x from the form state. */
+.period-selector::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 2);
+  border-radius: 8px;
+  background: var(--signal);
+  transform: translateX(var(--thumb-x, 0));
+  transition: transform 260ms var(--ease-settle);
+}
+
+.period-selector button {
+  position: relative;
+  z-index: 1;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 650;
+  transition: color 180ms var(--ease-micro);
+}
+
+.period-selector .period-active {
+  color: var(--ink);
+}
+
+.generate-button {
+  width: 100%;
+}
+
+.form-meta {
+  display: flex;
+  min-height: 38px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 11px;
+}
+
+.form-meta p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.secure-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.form-meta .form-error {
+  color: var(--danger);
+  text-align: right;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition:
+    opacity var(--dur-micro) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+}
+
+/* Space is reserved by .form-meta's min-height, so this reveals in place.
+   :empty means no message; under reduced motion the transition collapses to
+   an instant, so the text simply appears. */
+.form-meta .form-error:not(:empty) {
+  opacity: 1;
+  transform: none;
+}
+
+.loading-dot {
+  animation: quiet-pulse 900ms ease-in-out infinite;
+}
+
+.retry-period {
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+/* Hero entrance. A staggered rise reads top-down through the hierarchy —
+   navbar, eyebrow, title, description, form — and the receipt settles in last
+   as the payoff. Pure CSS so it plays from first paint with no hydration jump;
+   content is present in the DOM the whole time. */
+@media (prefers-reduced-motion: no-preference) {
+  nav:has(+ .hero-grid),
+  .hero-copy > .eyebrow,
+  .hero-copy > h1,
+  .hero-copy > .hero-description,
+  .hero-copy > .trace-form {
+    animation: st-rise var(--dur-enter) var(--ease-out) both;
+  }
+
+  nav:has(+ .hero-grid) {
+    animation-duration: 460ms;
+  }
+
+  .hero-copy > .eyebrow {
+    animation-delay: 90ms;
+  }
+
+  .hero-copy > h1 {
+    animation-delay: 155ms;
+  }
+
+  .hero-copy > .hero-description {
+    animation-delay: 220ms;
+  }
+
+  .hero-copy > .trace-form {
+    animation-delay: 290ms;
+  }
+
+  .hero-proof {
+    animation: st-settle 560ms var(--ease-settle) both;
+    animation-delay: 360ms;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr 360px; gap: 38px; }
+  .form-actions { grid-template-columns: 1fr; }
+  .period-selector { min-height: 48px; }
+}
+
+@media (max-width: 780px) {
+  .hero-grid { grid-template-columns: 1fr; padding-block: 68px 72px; }
+  .hero-copy h1 { font-size: clamp(46px, 13vw, 64px); }
+  .hero-proof { width: min(100%, 470px); margin-inline: auto; }
+}
+
+@media (max-width: 480px) {
+  .hero-copy h1 { margin-block: 24px 22px; font-size: 44px; }
+  .hero-description { font-size: 16px; }
+  .trace-form { margin-top: 30px; }
+  .form-meta { display: block; }
+  .form-meta .form-error { margin-top: 6px; text-align: left; }
+  .hero-proof { padding: 20px 16px 17px; }
+  .receipt-card { padding-inline: 21px; }
+}

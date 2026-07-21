@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible problem in Shiptrace
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include API keys, database credentials, private repository data, or unredacted sensitive logs. Security vulnerabilities belong in private vulnerability reporting, not here.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+      placeholder: A concise description of the behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest reliable sequence that reproduces the issue.
+      placeholder: |
+        1. Start the app with...
+        2. Enter...
+        3. Select...
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Node.js version, browser, and relevant optional integrations.
+      placeholder: Windows 11, Node.js 20.x, Chrome, Supabase enabled, Groq fallback disabled
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs or screenshots
+      description: Remove all secrets, tokens, personal data, and unnecessary commit messages.
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for duplicates.
+          required: true
+        - label: I removed all secrets and private data from this report.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

@@ -1,0 +1,40 @@
+name: Feature request
+description: Propose a focused improvement to the core Shiptrace flow
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Shiptrace intentionally keeps a narrow scope. Authentication, private repositories, payments, dashboards, webhooks, multi-repository comparison, and unrelated SaaS features are not part of the MVP.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem does this solve in the core proof-of-progress flow?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the smallest useful change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Explain simpler approaches or workarounds you considered.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This directly strengthens or simplifies the main Shiptrace flow.
+          required: true
+        - label: This does not require private repository access or user authentication.
+          required: true
