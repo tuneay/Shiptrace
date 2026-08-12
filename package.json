@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.7",
-    "next": "16.2.10",
+    "next": "16.3.0",
     "openai": "^6.48.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
@@ -54,6 +54,6 @@
     "typescript": "^5"
   },
   "overrides": {
-    "postcss": "^8.5.20"
+    "postcss": "^8.5.26"
   }
 }
